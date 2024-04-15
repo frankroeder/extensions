@@ -22,13 +22,14 @@ export default function Command(
       const params = new URLSearchParams({
         q: query,
         chatMode,
+        tbm: "youchat"
       });
       popToRoot();
-      open(`https://you.com/search?${params}&fromSearchBar=true&tbm=youchat`);
+      open(`https://you.com/search?${params}`);
     },
     initialValues: {
       query: props.draftValues?.query ?? props.fallbackText ?? "",
-      chatMode: props.draftValues?.chatMode ?? "all",
+      chatMode: props.draftValues?.chatMode ?? "default",
     },
     validation: {
       query: (value) =>
@@ -64,17 +65,20 @@ export default function Command(
       <Form.Description text="You.com" />
       <Form.TextArea title="Ask Anything" {...itemProps.query} />
       <Form.Dropdown
-        title="ChatMode"
+        title="Chat Mode"
         info="Select your chat mode"
         {...itemProps.chatMode}
       >
-        <Form.Dropdown.Item value="default" title="Smart" />
-        <Form.Dropdown.Item value="agent" title="Genius" />
-        <Form.Dropdown.Item value="custom" title="Enhanced" />
-        <Form.Dropdown.Item value="research" title="Research" />
-        <Form.Dropdown.Item value="create" title="Create" />
+        <Form.Dropdown.Item value="default" title="Smart - Quickly complete tasks, create content, access news & live web results" />
+        <Form.Dropdown.Item value="agent" title="⚡️Genius - Solutions to complex problems that require multiple steps" />
+        <Form.Dropdown.Item value="custom" title="⚡️Enhanced - Advanced You.com capabilities with a custom AI model" />
+        <Form.Dropdown.Item value="research" title="⚡️Research - Analysis, comparisons, and topic exploration with extensive citations" />
+        <Form.Dropdown.Item value="create" title="⚡️Create - Transform ideas into stunning visuals with unlimited styles" />
       </Form.Dropdown>
       <Form.Separator />
+			<Form.Description text="YouPro: https://you.com/plans" />
+			<Form.Description text="YouChat: https://about.you.com/youchat/" />
+			<Form.Description text="FAQ: https://about.you.com/faq/" />
     </Form>
   );
 }
